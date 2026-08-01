@@ -1,2 +1,3 @@
 # pulse-blog-app
-Pulse is a real-time blog app built with Apache Cordova and Firebase. Features include email/password authentication with verification, a live Firestore post feed, a like/reaction system, personal posts feed, and profile image uploads. Built as the final project for Bincom Academy's Mobile App Development training.
+First public release of Pulse — a real-time blogging app built with Apache Cordova and Firebase. Features Firebase Authentication (email/password with verification), a live Firestore-powered post feed, a like/reaction system, a personal "My Posts" feed, and a profile tab with image upload. Built as the final project for Bincom Academy's Mobile App Development training.
+⚠️ This is a sideloaded APK, not on the Play Store — Android will show an "unknown sources" warning on install. This is expected.
