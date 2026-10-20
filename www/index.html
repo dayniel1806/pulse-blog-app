@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pulse</title>
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="shortcut icon" href="res/ico.png" type="image/x-icon" />
+</head>
+<body>
+  
+  <!-- REGISTER PAGE -->
+  <div id="register-page">
+    <h1 class="app-brand">Pulse</h1>
+    <p class="app-subtitle">Share your world</p>
+    <div class="auth-form-wrapper">
+      <form id="signup-form">
+        <input id="reg-fullname" type="text" placeholder="Full Name" />
+        <input id="reg-email" type="email" placeholder="Email" />
+        <input id="reg-password" type="password" placeholder="Password" />
+        <button type="submit" id="btn-register" class="btn-primary">Register</button>
+      </form>
+      <p id="error-message" class="alert-error"></p>
+      <p id="success-message" class="alert-success"></p>
+      <p class="switch-link">Already have an account? <a href="#" id="go-to-login">Sign In</a></p>
+    </div>
+  </div>
+
+  <!-- LOGIN PAGE -->
+  <div id="login-page" style="display:none;">
+    <h1 class="app-brand">Pulse</h1>
+    <p class="app-subtitle">Welcome back</p>
+    <div class="auth-form-wrapper">
+      <form id="login-form">
+        <input type="email" id="email" placeholder="Email" />
+        <input type="password" id="password" placeholder="Password" />
+        <button type="submit" id="btn-login" class="btn-primary">Sign In</button>
+      </form>
+      <p id="login-error-message" class="alert-error"></p>
+      <p id="login-success-message" class="alert-success"></p>
+      <p class="switch-link">Don't have an account? <a href="#" id="go-to-signup">Sign Up</a></p>
+    </div>
+  </div>
+
+  <!-- VERIFY PAGE -->
+  <div id="verify-page" style="display:none;">
+    <h1 class="app-brand">Pulse</h1>
+    <div class="auth-form-wrapper">
+      <h2 style="color:#ff8c00; text-align:center; margin-bottom:12px;">Verify your email</h2>
+      <p style="color:#999; text-align:center; margin-bottom:24px; font-size:14px;">
+        We sent a verification link to your email. Click it, then tap below.
+      </p>
+      <button id="btn-check-verified" class="btn-primary">I've Verified — Continue</button>
+      <button class="btn-text" id="btn-resend">Resend Email</button>
+    </div>
+  </div>
+
+  <!-- MAIN APP -->
+  <div class="app-page" style="display:none;">
+
+    <!-- ALL POSTS TAB -->
+    <div id="tab-all" class="tab">
+      <div class="top-bar">
+        <span class="top-bar-title">Pulse ⚡</span>
+      </div>
+      <div id="feed-container"></div>
+    </div>
+
+    <!-- MY POSTS TAB -->
+    <div id="tab-mine" class="tab">
+      <div class="top-bar">
+        <span class="top-bar-title">My Posts</span>
+      </div>
+
+      <!-- New post form -->
+      <div class="new-post-section">
+        <h3>New Post</h3>
+        <div class="camera-placeholder" id="camera-placeholder">
+          <span class="camera-icon">📷</span>
+          <span>Tap to add a photo</span>
+        </div>
+        <img id="captured-preview" style="display:none;" />
+        <div style="display:flex; gap:8px; margin-bottom:12px;">
+          <button type="button" id="btn-capture" class="btn-secondary" style="flex:1;">Take Photo</button>
+          <button type="button" id="btn-upload" class="btn-secondary" style="flex:1;">Upload</button>
+        </div>
+        <input type="file" id="file-upload" accept="image/*" style="display:none;" />
+        <input type="text" id="post-title" placeholder="Title" />
+        <textarea id="post-content" placeholder="What's on your mind?" rows="4"></textarea>
+        <button type="button" id="btn-publish" class="btn-primary">Publish Post</button>
+      </div>
+
+      <div id="myposts-container"></div>
+    </div>
+
+    <!-- PROFILE TAB -->
+    <div id="tab-profile" class="tab">
+      <div class="top-bar">
+        <span class="top-bar-title">Profile</span>
+      </div>
+      <div class="profile-container">
+        <div class="profile-avatar" id="profile-avatar-container">
+          <img id="profile-pic-preview" style="display:none; width:100%; height:100%; object-fit:cover; border-radius:50%;" />
+          <span id="profile-avatar-initial"></span>
+        </div>
+        <p class="profile-name" id="profile-name"></p>
+        <p class="profile-email" id="profile-email"></p>
+
+        <div class="profile-form-section">
+          <input type="file" id="profile-pic-upload" accept="image/*" style="display:none;" />
+          <button type="button" id="btn-profile-pic" class="btn-secondary">Change Profile Picture</button>
+
+          <form id="profile-form" style="margin-top:16px;">
+            <input type="text" id="profile-bio" placeholder="Bio" />
+            <input type="text" id="profile-phone" placeholder="Phone" />
+            <input type="text" id="profile-location" placeholder="Location" />
+            <button type="submit" id="btn-save-profile" class="btn-primary">Save Profile</button>
+          </form>
+          <p id="profile-save-message" class="alert-success"></p>
+          <button id="profile-btn-logout" class="btn-secondary" style="margin-top:16px;">Sign Out</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <nav>
+      <button id="nav-all" class="active-nav">
+        <span class="nav-icon">🗞️</span>
+        All Posts
+      </button>
+      <button id="nav-mine">
+        <span class="nav-icon">📝</span>
+        My Posts
+      </button>
+      <button id="nav-profile">
+        <span class="nav-icon">👤</span>
+        Profile
+      </button>
+    </nav>
+  </div>
+
+  <!-- POST DETAIL SCREEN -->
+  <div id="post-detail-screen" style="display:none;">
+    <div class="detail-top-bar">
+      <button id="btn-back-to-feed" class="btn-back">← Back</button>
+      <span style="font-weight:700; color:#ff8c00;">Pulse ⚡</span>
+    </div>
+    <img id="detail-image" />
+    <div class="detail-body">
+      <h2 id="detail-title"></h2>
+      <p id="detail-content"></p>
+      <small id="detail-author"></small><br/>
+      <small id="detail-time"></small>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="cordova.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/camera.js"></script>
+  <script src="js/posts.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>
